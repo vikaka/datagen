@@ -44,7 +44,7 @@ else:
 		a = a+datetime.timedelta(seconds = 1)
 		#epo = calendar.timegm(a.timetuple())
 		#seq = ticker+","+company_name+","+industry+","+sector+","+exchange+","+str(x)+","+str(a)
-		seq = ticker+","+str(x)
+		seq = ticker+","+str(x)+","+str(a)
 		producer.send("test",seq)#,timestamp_ms = epo)
 
 		time.sleep(1)
