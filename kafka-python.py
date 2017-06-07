@@ -1,3 +1,9 @@
+'''code to generate induvidual stock streams
+arguments to be passed 
+1. Stock Ticker
+2. start Price
+'''
+
 from kafka import KafkaClient,KafkaProducer
 import pandas as pd
 import datetime
@@ -6,8 +12,10 @@ import csv
 import random
 import time
 import calendar
+import sys
 
-x = 95
+
+x = int(sys.argv[2])
 a = datetime.datetime(2016,1,1,00,00,00)
 y = np.arange(1000000)
 delta  = np.random.uniform(-0.00001,0.00001, size = (1000000))
@@ -26,14 +34,15 @@ for i in range (0,len(y)):
 		x = x -z
 	else:
 		x = x - (z/2)
-	ticker = "AAPL"
-	company_name = "Apple INC"
-	industry = "Technology"
-	sector = "Computer Manufacturing"
-	exchange = "NASDAQ"
+	ticker = sys.argv[1]
+	#company_name = "Apple INC"
+	#industry = "Technology"
+	#sector = "Computer Manufacturing"
+	#exchange = "NASDAQ"
 	a = a+datetime.timedelta(seconds = 1)
 	#epo = calendar.timegm(a.timetuple())
-	seq = ticker+","+company_name+","+industry+","+sector+","+exchange+","+str(x)+","+str(a)
+	#seq = ticker+","+company_name+","+industry+","+sector+","+exchange+","+str(x)+","+str(a)
+	seq = ticker+","+str(x)
 	producer.send("test",seq)#,timestamp_ms = epo)
 	
-	time.sleep(2)
+	time.sleep(1)
