@@ -14,7 +14,9 @@ import time
 import calendar
 import sys
 
-
+if sys.argv[1] is None or sys.argv[2] is None:
+	print("enter ticker name and start price")
+else:
 x = int(sys.argv[2])
 a = datetime.datetime(2016,1,1,00,00,00)
 y = np.arange(1000000)
